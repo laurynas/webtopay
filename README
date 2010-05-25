@@ -13,6 +13,16 @@ Installation
 cd your_application
 ./script/plugin install git://github.com/kristis/webtopay.git
 
+Configuration
+===========
+Create initializer
+config/initializers/webtopay.rb
+
+WebToPay.configure do |config|
+  config.project_id     = 00000
+  config.sign_password  = 'your sign password'
+end
+
 Examples
 ===========
 
@@ -40,7 +50,7 @@ These code slices will protect your controller actions, which work with webtopay
 
 [........]
 
-<% macro_form :test => 1, :merchantid => 8907, :orderid => 123, :amount => 2000, :payment => 'vb', :country => 'lt', :paytext => "Billing for XX at the website XXX" do %>
+<% macro_form :test => 1, :orderid => 123, :amount => 2000, :payment => 'vb', :country => 'lt', :paytext => "Billing for XX at the website XXX" do %>
   Select paying method: <%= select_tag(:payment, options_for_select(['', 'vb', 'hanza', 'nord', 'snoras'])) %>
   <%= submit_tag "test paying" %>
 <% end %>
